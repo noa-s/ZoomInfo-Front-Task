@@ -1,0 +1,52 @@
+
+  <!-- WE USE innerHtml attribute for simple html symbol rendering -->
+  <div class="container" style="width: 80%">
+    <div class="row mb-4">
+      <div class="col">
+          <h3>
+              <span *ngIf="currQ" style="color: #0086b3"> Q:{{currQ.index+1}}:</span> &nbsp;
+              <span  style="font-size: 24px;" [innerHTML]="currQ.question"></span> 
+            </h3>    
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let ans of fourAnswers; let i = index;" class="col-sm-6" >
+        <div class="m-2 answer hoverShadow"   
+        (click)="answerChecked=true; chooseAnswer(ans , i, $event)"
+        [style.border-width]="boderWidthBold"
+        [style.border-color]="boderColor"
+        
+        >
+        <img *ngIf="answerChecked && userChoice==i && btnValue=='Continue'"
+        [src]="answerResponseImg" alt="" >
+        <!-- {{ans}} -->
+        <span [innerHTML]="ans" [style.border-width]="borderWidth" style="color: #496472"></span>
+
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col p-2" >
+          <button  *ngIf="fourAnswers.length>0" type="button" 
+          class="btn btn-success btn-lg"
+          style="width:26%; border-radius: 100px;" [disabled]="answerChecked == false" 
+          [innerHtml]="btnValue" [style.background-color]="btnColor"
+          (click)="submitAnswer()">OK</button>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col p-2" >
+        <div class="row row d-flex justify-content-center">
+          <div *ngFor="let i of allQ ; let j =index">
+              <div class="col-1.2 m-1" *ngIf="j >= resultsArr.length">
+                <div class="progressBullet"></div>
+              </div>
+              <div class="col-1.2 m-1" *ngIf="j < resultsArr.length">
+                <div class="progressBullet" style="background-color: #0086b3"></div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>    

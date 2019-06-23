@@ -1,0 +1,52 @@
+<div class="container clearfix" style="width: 80%">
+    <div class="row mb-4">
+      <div class="col">
+        <h3>Thank You!</h3>
+        <h3>Here is your results ({{counter}} / {{resultsArr.length}}):</h3>
+        <a href="">start again</a>
+        
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col">
+
+              <div class="card-group ">
+
+                    <div class="card w-100 mb-3" *ngFor="let res of resultsArr; let i=index;" [style.background-color]='res.color' >
+                        <div class="card-header bg-light" style="font-weight: bold; text-align: left" > 
+                          Q{{i+1}}: &nbsp; <span [innerHtml]="res.question.question"></span>
+                        </div>
+                        <div class="card-body">
+                          <h6>You answerd:</h6>
+                          <p class="card-text"  [innerHtml]="res.userAnswer" >The top resources for all things related to the Sun.</p>
+    
+                          <div style="border: green solid; border-radius: 15px;">
+                            <div *ngIf="res.question.correct_answer != res.userAnswer ">
+                              <h6>The currect answer:</h6>
+                              <div 
+                              [innerHtml]="res.question.correct_answer">
+                              </div>      
+                            </div>
+                              <div *ngIf="res.question.correct_answer == res.userAnswer " style="color: green;">
+                                <b>
+                                    You got it right!
+                                </b>
+                                
+                              </div>
+                          </div>
+
+
+
+                        </div>
+                      </div>
+
+                </div>
+
+                
+            </div>
+
+
+      </div>
+
+</div>
